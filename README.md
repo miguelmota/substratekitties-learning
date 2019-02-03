@@ -1,12 +1,12 @@
 # SubstrateKitties Learning
 
->  Following along the [Substrate collectables workshop](https://github.com/shawntabrizi/substrate-collectables-workshop) and learning about [Substrate](https://github.com/paritytech/substrate).
+>  Following along the [Substrate collectables workshop](https://github.com/shawntabrizi/substrate-collectables-workshop) for learning about [Substrate](https://github.com/paritytech/substrate).
 
 ### Instructions and notes
 
 Installing Substrate after Rust is installed:
 
-```
+```bash
 curl https://getsubstrate.io -sSf | bash
 source ~/.cargo/env
 ```
@@ -42,7 +42,7 @@ Purging chain data (required after modifying runtime):
 cargo run -- purge-chain --dev
 ```
 
-UI
+UI for interacting with methods and storage
 
 [https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
 
