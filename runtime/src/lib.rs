@@ -194,7 +194,7 @@ impl sudo::Trait for Runtime {
 }
 
 impl substratekitties::Trait for Runtime {
-
+    type Event = Event;
 }
 
 construct_runtime!(
@@ -210,7 +210,7 @@ construct_runtime!(
 		Indices: indices,
 		Balances: balances,
 		Sudo: sudo,
-		Substratekitties: substratekitties::{Module, Call, Storage},
+		Substratekitties: substratekitties::{Module, Call, Storage, Event<T>},
 	}
 );
 
