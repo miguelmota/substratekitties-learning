@@ -1,10 +1,45 @@
-# substratekitties
+# SubstrateKitties Learning
 
-A new SRML-based Substrate node, ready for hacking.
+>  Following along the [Substrate collectables workshop](https://github.com/shawntabrizi/substrate-collectables-workshop) and learning about [Substrate](https://github.com/paritytech/substrate).
 
-./target/release/substratekitties --dev
+### Instructions and notes
 
+Installing Substrate after Rust is installed:
+
+```
+curl https://getsubstrate.io -sSf | bash
+source ~/.cargo/env
+```
+
+Creating new parachain node from a template:
+
+```bash
+substrate-node-new substratekitties <author-name>
+```
+
+Building WASM runtime:
+
+```bash
 ./build.sh
-cargo build --release
+```
 
-https://polkadot.js.org/apps/#/settings
+Building binary and running:
+
+```bash
+cargo build --release
+./target/release/substratekitties --dev
+```
+
+Simply running after building WASM runtime:
+
+```bash
+cargo run -- --dev
+```
+
+UI
+
+[https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
+
+# License
+
+[MIT](LICENSE)
