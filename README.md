@@ -36,7 +36,7 @@ Simply running after building WASM runtime:
 cargo run -- --dev
 ```
 
-Purging chain data:
+Purging chain data (required after modifying runtime):
 
 ```bash
 cargo run -- purge-chain --dev
