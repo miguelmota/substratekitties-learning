@@ -4,6 +4,8 @@
 
 ### Instructions and notes
 
+### runtime
+
 Installing Substrate after Rust is installed:
 
 ```bash
@@ -20,6 +22,7 @@ substrate-node-new substratekitties <author-name>
 Building WASM runtime:
 
 ```bash
+cd substratekitties
 ./build.sh
 ```
 
@@ -42,9 +45,36 @@ Purging chain data (required after modifying runtime):
 cargo run -- purge-chain --dev
 ```
 
-UI for interacting with methods and storage
+UI for interacting with methods and storage:
 
 [https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
+
+### Frontend
+
+Create new frontend project from boilerplate:
+
+```bash
+substrate-ui-new substratekitties
+```
+
+Install dependencies:
+
+```bash
+cd substratekitties-ui/
+yarn install
+```
+
+Start app:
+
+```bash
+yarn run dev
+```
+
+Recover seed for import:
+
+```bash
+subkey restore Alice
+```
 
 # License
 
