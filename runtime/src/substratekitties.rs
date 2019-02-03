@@ -35,7 +35,10 @@ decl_storage! {
         AllKittiesIndex: map T::Hash => u64;
 
 
-        OwnedKitty get(kitty_of_owner): map T::AccountId => T::Hash;
+
+        OwnedKittiesArray get(kitty_of_owner_by_index): map (T::AccountId, u64) => T::Hash;
+        OwnedKittiesCount get(owned_kitty_count): map T::AccountId => u64;
+        OwnedKittiesIndex: map T::Hash => u64;
 
         Nonce: u64;
     }
@@ -49,9 +52,15 @@ decl_module! {
         fn create_kitty(origin) -> Result {
             let sender = ensure_signed(origin)?;
 
+            let owned_kitty_count = Self::owned_kitty_count(&sender);
+
+            let new_owned_kitty_count = owned_kitty_count.checked_add(1)
+                .ok_or("Overflow adding a new kitty to account balance")?;
+
             let all_kitties_count = Self::all_kitties_count();
 
-            let new_all_kitties_count = all_kitties_count.checked_add(1).ok_or("Overflow adding a new kitty to total supply")?;
+            let new_all_kitties_count = all_kitties_count.checked_add(1)
+                .ok_or("Overflow adding a new kitty to total supply")?;
 
             let nonce = <Nonce<T>>::get();
             let random_hash = (<system::Module<T>>::random_seed(), &sender, nonce)
@@ -74,7 +83,9 @@ decl_module! {
             <AllKittiesIndex<T>>::insert(random_hash, all_kitties_count);
 
 
-            <OwnedKitty<T>>::insert(&sender, random_hash);
+            <OwnedKittiesArray<T>>::insert((sender.clone(), owned_kitty_count), random_hash);
+            <OwnedKittiesCount<T>>::insert(&sender, new_owned_kitty_count);
+            <OwnedKittiesIndex<T>>::insert(random_hash, owned_kitty_count);
 
             <Nonce<T>>::mutate(|n| *n += 1);
 
