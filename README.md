@@ -36,6 +36,12 @@ Simply running after building WASM runtime:
 cargo run -- --dev
 ```
 
+Purging chain data:
+
+```bash
+cargo run -- purge-chain --dev
+```
+
 UI
 
 [https://polkadot.js.org/apps/](https://polkadot.js.org/apps/)
